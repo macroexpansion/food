@@ -44,6 +44,7 @@ collections = client['test']
 dishes = collections['dishes']
 users = collections['users']
 useractions = collections['useractions']
+recommendations = collections['recommendations']
 
 user_list = [user['_id'] for user in users.find({ 'type': 'customer' })]
 dish_list = [dish['_id'] for dish in dishes.find()]
@@ -53,10 +54,16 @@ def recommend():
     ratings = pd.read_csv('data.csv', sep=' ', names=cols, encoding='latin-1')
     data = ratings.values
     # print(rate_train)
+    try:
+        rs = CollaborativeFiltering(data, k=30, mode='user')
+        rs.fit()
+        results = rs.return_recommendation(user_list, dish_list)
+        for result in results:
+            recommendations.update_one( { 'user':  result['user']}, { "$set": result }, upsert=True)
+    except:
+        return {'message': 'error'}
 
-    rs = CollaborativeFiltering(data, k=30, mode='user')
-    rs.fit()
-    return rs.return_recommendation(user_list, dish_list)
+    return {'message': 'success'}
 
 def get_data():
     with open('data.csv', 'w') as f:

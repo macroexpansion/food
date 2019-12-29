@@ -128,9 +128,9 @@ class CollaborativeFiltering:
             if self.mode == 'user':
                 # temp = 'Recommend item(s): {}, to user {}'.format(recommended_items, user)
                 # result.update({ user: recommended_items })
-                result.append({ 'user': str( user_list[user] ), 'dish': [ str(dish_list[i]) for i in recommended_items ] })
+                result.append({ 'user': user_list[user] , 'dish': [ dish_list[i] for i in recommended_items ] })
             else: # item-item
                 temp = 'Recommend item {} to user(s): {} '.format(user, recommended_items)
                 # result.update({ user: recommended_items })
 
-        return {'data': result}
+        return result
