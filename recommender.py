@@ -95,14 +95,14 @@ class CollaborativeFiltering:
 
         # print('item %s, rated by %s' % (user, items_rated_by_user))
         for i in range(self.n_items):
-            # rating = self.__pred(user, i)
-            # if rating > 0: 
-            #     recommended_items.append(i)
+            rating = self.__pred(user, i)
+            if rating > 0: 
+                recommended_items.append(i)
 
-            if i not in items_rated_by_user:
-                rating = self.__pred(user, i)
-                if rating > 0: 
-                    recommended_items.append(i)
+            # if i not in items_rated_by_user:
+            #     rating = self.__pred(user, i)
+            #     if rating > 0: 
+            #         recommended_items.append(i)
         
         return recommended_items 
 
@@ -119,17 +119,18 @@ class CollaborativeFiltering:
             else: # item-item
                 print('Recommend item {} to user(s): {} '.format(user, recommended_items))
 
-    def return_recommendation(self):
-        result = {}
+    def return_recommendation(self, user_list, dish_list) -> list:
+        result = []
 
         for user in range(self.n_users):
             recommended_items = self.recommend(user)
 
             if self.mode == 'user':
-                temp = 'Recommend item(s): {}, to user {}'.format(recommended_items, user)
-                result.update({ user: recommended_items })
+                # temp = 'Recommend item(s): {}, to user {}'.format(recommended_items, user)
+                # result.update({ user: recommended_items })
+                result.append({ 'user': str( user_list[user] ), 'dish': [ str(dish_list[i]) for i in recommended_items ] })
             else: # item-item
                 temp = 'Recommend item {} to user(s): {} '.format(user, recommended_items)
-                result.update({ user: recommended_items })
+                # result.update({ user: recommended_items })
 
-        return result
+        return {'data': result}

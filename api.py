@@ -1,6 +1,3 @@
-import numpy as np
-import pandas as pd
-from recommender import CollaborativeFiltering
 
 # r_cols = ['user_id', 'movie_id', 'rating', 'unix_timestamp']
 
@@ -30,18 +27,52 @@ from recommender import CollaborativeFiltering
 #     SE += (pred - rate_test[n, 2])**2 
 # RMSE = np.sqrt(SE/n_tests)
 # print('Item-item CF, RMSE =', RMSE)
+import numpy as np
+import pandas as pd
+from recommender import CollaborativeFiltering
+import flask
+import pymongo
+from bson.objectid import ObjectId
+import time
+
+from recommender import CollaborativeFiltering
+
+
+srv = 'mongodb+srv://dung18dv:dangvandung1811@cluster0-zzvgt.gcp.mongodb.net/test?retryWrites=true&w=majority'
+client = pymongo.MongoClient(srv)
+collections = client['test']
+dishes = collections['dishes']
+users = collections['users']
+useractions = collections['useractions']
+
+user_list = [user['_id'] for user in users.find({ 'type': 'customer' })]
+dish_list = [dish['_id'] for dish in dishes.find()]
 
 def recommend():
     cols = ['user_id', 'item_id', 'rating']
-    ratings = pd.read_csv('data.dat', sep=' ', names=cols, encoding='latin-1')
+    ratings = pd.read_csv('data.csv', sep=' ', names=cols, encoding='latin-1')
     data = ratings.values
     # print(rate_train)
 
     rs = CollaborativeFiltering(data, k=30, mode='user')
     rs.fit()
-    return rs.return_recommendation()
+    return rs.return_recommendation(user_list, dish_list)
+
+def get_data():
+    with open('data.csv', 'w') as f:
+        for user_idx, user in enumerate(user_list):
+            print(user_idx)
+            for dish_idx, dish in enumerate(dish_list):
+                ratings = useractions.count_documents({ 'type': 'search', 'user': user['_id'], 'dish': dish['_id'] })
+                if ratings == 0:
+                    continue
+
+                sequence = '{} {} {}\n'.format(user_idx, dish_idx, ratings)
+                f.write(sequence)
+
 
 if __name__ == '__main__':
-    # res = rec()
-    # print(res)
+    get_data()
+    res = recommend()
+    print(res)
     pass

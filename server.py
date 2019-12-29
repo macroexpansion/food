@@ -8,6 +8,10 @@ app = Flask(__name__)
 def recommend():
     return recommend_function()
 
+@app.route('/')
+def home():
+    return 'http://localhost:8888/recommend'
+
 
 if __name__ == '__main__':
     # app.run(debug=False)
