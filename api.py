@@ -37,7 +37,7 @@ def recommend():
     data = ratings.values
     # print(rate_train)
 
-    rs = CollaborativeFiltering(data, k=30, mode='item')
+    rs = CollaborativeFiltering(data, k=30, mode='user')
     rs.fit()
     return rs.return_recommendation()
 
