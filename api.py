@@ -68,9 +68,8 @@ def recommend():
 def get_data():
     with open('data.csv', 'w') as f:
         for user_idx, user in enumerate(user_list):
-            print(user_idx)
             for dish_idx, dish in enumerate(dish_list):
-                ratings = useractions.count_documents({ 'type': 'search', 'user': user['_id'], 'dish': dish['_id'] })
+                ratings = useractions.count_documents({ 'type': 'search', 'user': ObjectId(user), 'dish': ObjectId(dish) })
                 if ratings == 0:
                     continue
 
