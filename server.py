@@ -1,11 +1,12 @@
 from recommender import CollaborativeFiltering
-from api import recommend as recommend_function
+from api import recommend as recommend_function, get_data
 from flask import Flask
 app = Flask(__name__)
 
 
 @app.route('/recommend')
 def recommend():
+    get_data()
     return recommend_function()
 
 @app.route('/')
