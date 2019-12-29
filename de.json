@@ -1,0 +1,11 @@
+{
+    "name": "Quan chi Ha",
+    "address": "Gd3",
+    "location": {
+        "coordinates": [21.0382617, 105.7829332]
+    },
+    "description": "quan chi ha",
+    "is_active": true,
+    "background_image": "https://pasgo.vn/Upload/anh-chi-tiet/quan-an-ngon-phan-boi-chau-dan-loi-ve-mien-ky-uc-1-normal-12067534889.jpg",
+    "extra_images": ["https://pasgo.vn/Upload/anh-chi-tiet/quan-an-ngon-phan-boi-chau-dan-loi-ve-mien-ky-uc-1-normal-12067534889.jpg", "https://pasgo.vn/Upload/anh-chi-tiet/quan-an-ngon-phan-boi-chau-dan-loi-ve-mien-ky-uc-1-normal-12067534889.jpg"]
+}

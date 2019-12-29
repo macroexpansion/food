@@ -116,5 +116,20 @@ class CollaborativeFiltering:
 
             if self.mode == 'user':
                 print('Recommend item(s): {}, to user {}'.format(recommended_items, user))
-            else: 
+            else: # item-item
                 print('Recommend item {} to user(s): {} '.format(user, recommended_items))
+
+    def return_recommendation(self):
+        result = {}
+
+        for user in range(self.n_users):
+            recommended_items = self.recommend(user)
+
+            if self.mode == 'user':
+                temp = 'Recommend item(s): {}, to user {}'.format(recommended_items, user)
+                result.update({ user: recommended_items })
+            else: # item-item
+                temp = 'Recommend item {} to user(s): {} '.format(user, recommended_items)
+                result.update({ user: recommended_items })
+
+        return result

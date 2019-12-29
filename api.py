@@ -14,14 +14,14 @@ from recommender import CollaborativeFiltering
 # rate_train = rate_train[:, :3] - 1
 # rate_test = rate_test[:, :3] - 1
 
-cols = ['user_id', 'item_id', 'rating']
-ratings = pd.read_csv('data.dat', sep = ' ', names = cols, encoding='latin-1')
-data = ratings.values
+# cols = ['user_id', 'item_id', 'rating']
+# ratings = pd.read_csv('data.dat', sep = ' ', names = cols, encoding='latin-1')
+# data = ratings.values
 # print(rate_train)
 
-rs = CollaborativeFiltering(data, k = 30, mode='item')
-rs.fit()
-rs.print_recommendation()
+# rs = CollaborativeFiltering(data, k = 30, mode='item')
+# rs.fit()
+# rs.print_recommendation()
 
 # n_tests = rate_test.shape[0]
 # SE = 0 # squared error
@@ -31,3 +31,17 @@ rs.print_recommendation()
 # RMSE = np.sqrt(SE/n_tests)
 # print('Item-item CF, RMSE =', RMSE)
 
+def recommend():
+    cols = ['user_id', 'item_id', 'rating']
+    ratings = pd.read_csv('data.dat', sep=' ', names=cols, encoding='latin-1')
+    data = ratings.values
+    # print(rate_train)
+
+    rs = CollaborativeFiltering(data, k=30, mode='item')
+    rs.fit()
+    return rs.return_recommendation()
+
+if __name__ == '__main__':
+    # res = rec()
+    # print(res)
+    pass
