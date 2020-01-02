@@ -1,11 +1,19 @@
 {
-    "name": "Quan chi Ha",
-    "address": "Gd3",
-    "location": {
-        "coordinates": [21.0382617, 105.7829332]
+    "name" : "Cửa hàng cơm bình dân Minh Anh",
+    "address" : " Kiều Mai, Xã Phú Diễn, Huyện Từ Liêm, Thành Phố Hà Nội, Việt Nam ",
+    "location" : {
+        "type" : "Point",
+        "coordinates" : [ 
+            105.752783, 
+            21.044492 
+        ]
     },
-    "description": "quan chi ha",
-    "is_active": true,
-    "background_image": "https://pasgo.vn/Upload/anh-chi-tiet/quan-an-ngon-phan-boi-chau-dan-loi-ve-mien-ky-uc-1-normal-12067534889.jpg",
-    "extra_images": ["https://pasgo.vn/Upload/anh-chi-tiet/quan-an-ngon-phan-boi-chau-dan-loi-ve-mien-ky-uc-1-normal-12067534889.jpg", "https://pasgo.vn/Upload/anh-chi-tiet/quan-an-ngon-phan-boi-chau-dan-loi-ve-mien-ky-uc-1-normal-12067534889.jpg"]
+    "dishes" : [ 
+        ObjectId("5e0844e0274406286337f95e"),
+        ObjectId("5e08467635cd117771d9f45a"),
+    ],
+    "description" : "Crab",
+    "is_active" : true,
+    "background_image" : "http://www.monngon.tv/uploads/images/2017/03/16/af776e350e415928368687fe6cf02f38-b.jpg",
+    "extra_images" : ["http://www.monngon.tv/uploads/images/2017/03/16/af776e350e415928368687fe6cf02f38-b.jpg"]
 }

@@ -33,13 +33,13 @@ dblist = client.list_database_names()
     # print(x)
 
 useractions = collections['useractions']
-for i in range(random.randint(0,10)):
+for i in range(random.randint(3,10)):
     # res = useractions.insert_one(a).inserted_id
     a = {
         "_id": ObjectId(),
         "type" : "search",
-        "user" : ObjectId("5e0840232744062863378ed1"),
-        "dish" : ObjectId("5e0815e42744062863340952")
+        "user" : ObjectId("5e08763727440628633c68fd"),
+        "dish" : ObjectId("5e08467635cd117771d9f45d")
     }
     useractions.update_one( {'_id': a['_id'] }, { "$set": a }, upsert=True)
     print(i)
